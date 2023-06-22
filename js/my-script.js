@@ -38,19 +38,22 @@
     const restartBtn = document.getElementById("restart")
 
     const myContainer = document.getElementById("grid-container");
+
+  
     
     difficultySetting.addEventListener("submit", function(event){
         
-        event.preventDefault()
+        event.preventDefault();
+
         
-        const userDifficultyChoice = document.getElementById("user-difficulty-choice");
-        
-        
-        myContainer.innerHTML="";
-        
-        const difficultyChoiceValue = parseInt (userDifficultyChoice.value);
-        
-        const bombArray = uniqueRandomNumberArray(16, difficultyChoiceValue**2);
+    const userDifficultyChoice = document.getElementById("user-difficulty-choice");
+    
+    
+    myContainer.innerHTML="";
+    
+    const difficultyChoiceValue = parseInt (userDifficultyChoice.value);
+    
+    const bombArray = uniqueRandomNumberArray(16, difficultyChoiceValue**2);
         
     let row;
     
@@ -59,6 +62,8 @@
     let activeCellCounter = null;
     
     let bombCounter = null;
+
+    let flag = false;
     
     for(let i=1;i <= (difficultyChoiceValue**2); i++){
         
@@ -110,8 +115,8 @@
                 
                 trigger.addEventListener("click", function(){
 
-                   overlayTop.classList.add("collapse");
-                   overlayBottom.classList.add("collapse");
+                   overlayTop.classList.add("my-collapse");
+                   overlayBottom.classList.add("my-collapse");
 
                    
                     
@@ -120,6 +125,8 @@
                          content.parentElement.classList.remove("active")
 
                     }
+
+                    content.innerHTML=`<img src="img/pngwing.com.png" alt="">`;
                     
                     
                      content.parentElement.classList.add("bomb");
@@ -129,12 +136,20 @@
                     bombCounter = document.querySelectorAll(".bomb")
                     
                     if(bombCounter.length > 0 && bombCounter.length != null){
+
                         console.log(activeCellCounter)
+
                         gameOver.append(`You lose
                         your score is:
                         ${activeCellCounter.length} `)
+
+                        setTimeout(function(){
+                            
+                            endGameScreen.classList.add("show")
+                            
+        
+                        },400);
                         
-                        setTimeout(endGameScreen.classList.add("show"),3000)
                                
                     }
 
@@ -150,8 +165,10 @@
                 
                 trigger.addEventListener("click", function(){
 
-                    overlayTop.classList.add("collapse");
-                    overlayBottom.classList.add("collapse");
+                    overlayTop.classList.add("my-collapse");
+                    overlayBottom.classList.add("my-collapse");
+
+                    content.innerHTML=`<img src="img/872_generated.jpg" alt="">`;
                     
                     if( content.parentElement.classList.contains("active")){
                         
@@ -170,7 +187,13 @@
                         your score is:
                         ${activeCellCounter.length}`)
 
-                        setTimeout(endGameScreen.classList.add("show"), 3000)
+                        setTimeout(function(){
+                          
+                            endGameScreen.classList.add("show")
+                           
+                        },400);
+                        
+                            
                                     
                     }
                 }
