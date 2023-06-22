@@ -30,6 +30,14 @@
     
     
     const difficultySetting = document.getElementById("difficulty-setting");
+
+    const endGameScreen = document.getElementById("end-game")
+
+    const gameOver = document.querySelector(".game-over")
+
+    const restartBtn = document.getElementById("restart")
+
+    const myContainer = document.getElementById("grid-container");
     
     difficultySetting.addEventListener("submit", function(event){
         
@@ -37,7 +45,6 @@
         
         const userDifficultyChoice = document.getElementById("user-difficulty-choice");
         
-        const myContainer = document.getElementById("grid-container");
         
         myContainer.innerHTML="";
         
@@ -69,7 +76,7 @@
         
         const col = document.createElement("div");
         
-        col.classList.add("col", "cell", "align-middle");
+        col.classList.add( "cell",`cell-${difficultyChoiceValue}` );
         
         row.append(col);
         
@@ -80,23 +87,42 @@
         col.append(content);
         
         content.append(i);
+
+        const overlayTop = document.createElement("div");
+        overlayTop.classList.add("overlay-top");
+        col.append(overlayTop) 
+
+        const overlayBottom = document.createElement("div");
+        overlayBottom.classList.add("overlay-bottom");
+        col.append(overlayBottom) 
+   
+        const trigger = document.createElement("div");
+        trigger.classList.add("trigger");
+        col.append(trigger) 
+        
+        
         
         let index=0;
         
         while( index < bombArray.length){
-            
+
             if( parseInt(content.innerHTML) == bombArray[index]){
                 
-                content.parentElement.addEventListener("click", function(){
-                    
-                    if(this.classList.contains("active")){
+                trigger.addEventListener("click", function(){
 
-                        this.classList.remove("active")
+                   overlayTop.classList.add("collapse");
+                   overlayBottom.classList.add("collapse");
+
+                   
+                    
+                    if( content.parentElement.classList.contains("active")){
+
+                         content.parentElement.classList.remove("active")
 
                     }
                     
                     
-                    this.classList.add("bomb");
+                     content.parentElement.classList.add("bomb");
 
                     activeCellCounter = document.querySelectorAll(".active")
                     
@@ -104,11 +130,12 @@
                     
                     if(bombCounter.length > 0 && bombCounter.length != null){
                         console.log(activeCellCounter)
-                        alert(`You lose
-                                your score is:
-                                ${activeCellCounter.length} `)
+                        gameOver.append(`You lose
+                        your score is:
+                        ${activeCellCounter.length} `)
                         
-                        location.reload(true)
+                        setTimeout(endGameScreen.classList.add("show"),3000)
+                               
                     }
 
                 }
@@ -121,26 +148,30 @@
             else{ 
                 
                 
-                content.parentElement.addEventListener("click", function(){
+                trigger.addEventListener("click", function(){
+
+                    overlayTop.classList.add("collapse");
+                    overlayBottom.classList.add("collapse");
                     
-                    if(this.classList.contains("active")){
+                    if( content.parentElement.classList.contains("active")){
                         
-                        this.classList.remove("active")
+                         content.parentElement.classList.remove("active")
 
                     }
 
-                    this.classList.add("active")
+                     content.parentElement.classList.add("active")
                     
                     activeCellCounter = document.querySelectorAll(".active")
                     
                     if(activeCellCounter.length == ((difficultyChoiceValue**2) - bombArray.length)){
                         console.log(activeCellCounter)
-                        alert(`You win 
-                                your score is:
-                                ${activeCellCounter.length} `)
 
-                        location.reload(true)
-                                
+                        gameOver.append(`You win
+                        your score is:
+                        ${activeCellCounter.length}`)
+
+                        setTimeout(endGameScreen.classList.add("show"), 3000)
+                                    
                     }
                 }
                 
@@ -163,4 +194,11 @@
 
 
 
+})
+
+restartBtn.addEventListener("click", function(){
+    endGameScreen.classList.remove("show");
+    gameOver.innerHTML = "";
+    myContainer.innerHTML ="";
+    
 })
