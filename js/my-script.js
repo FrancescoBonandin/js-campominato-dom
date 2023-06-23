@@ -97,9 +97,17 @@
         overlayTop.classList.add("overlay-top");
         col.append(overlayTop) 
 
+        const myTaperTop = document.createElement("div");
+        myTaperTop.classList.add("my-taper","top")
+        overlayTop.append(myTaperTop)
+
         const overlayBottom = document.createElement("div");
         overlayBottom.classList.add("overlay-bottom");
         col.append(overlayBottom) 
+
+        const myTaperBottom = document.createElement("div");
+        myTaperBottom.classList.add("my-taper","bottom")
+        overlayBottom.append(myTaperBottom)
    
         const trigger = document.createElement("div");
         trigger.classList.add("trigger");

@@ -23,8 +23,21 @@ main{
     background-repeat: no-repeat;
 }
 
+.title{
+    display: block;
+    text-align: center;
+
+    width: 700px;
+    color: whitesmoke;
+    margin:0 auto;
+    margin-bottom: 2rem;
+    text-shadow: -1px -1px 1px rgb(237, 206, 6), -2px -2px 1px rgb(237, 206, 6), -3px -3px 1px rgb(237, 206, 6), -4px -4px 1px rgb(237, 206, 6);
+
+}
+
 .form-container {
 
+    text-align: center;
 
     width: 700px;
     height: 100px;
@@ -131,13 +144,32 @@ main{
     border-bottom: 0;
 }
 
-.taper{
-    height: 2px;
+.my-taper{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
     width: 100%;
-    background:repeating-linear-gradient( 45deg black 2px,2px yellow);
+
+    transition: height 0.2s;
+
+    transition-delay: 0.1s;
+  
 }
 
-.overlay-top.my-collapse, .overlay-bottom.my-collapse{
+.my-taper.top{
+    background:repeating-linear-gradient(45deg, black 0 4px , yellow 4px 8px);
+    background-repeat: repeat-x;
+
+}
+.my-taper.bottom{
+    
+    background:repeating-linear-gradient(45deg, black 0px 4px ,yellow 4px 8px);
+    background-repeat: repeat-x;
+
+}
+
+.overlay-top.my-collapse, .overlay-bottom.my-collapse,.overlay-top.my-collapse > .my-taper, .overlay-bottom.my-collapse > .my-taper{
     height: 0%;
 
 }
