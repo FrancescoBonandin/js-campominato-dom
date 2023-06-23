@@ -137,8 +137,6 @@
                     
                     if(bombCounter.length > 0 && bombCounter.length != null){
 
-                        console.log(activeCellCounter)
-
                         gameOver.append(`You lose
                         your score is:
                         ${activeCellCounter.length} `)
@@ -149,7 +147,6 @@
                             
         
                         },400);
-                        
                                
                     }
 
@@ -181,7 +178,6 @@
                     activeCellCounter = document.querySelectorAll(".active")
                     
                     if(activeCellCounter.length == ((difficultyChoiceValue**2) - bombArray.length)){
-                        console.log(activeCellCounter)
 
                         gameOver.append(`You win
                         your score is:
@@ -193,8 +189,6 @@
                            
                         },400);
                         
-                            
-                                    
                     }
                 }
                 
@@ -208,8 +202,6 @@
         
     }
     
-    console.log(bombArray);
-    console.log(contentArray);
    
     
 

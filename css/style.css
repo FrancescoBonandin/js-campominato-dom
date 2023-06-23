@@ -49,9 +49,10 @@ main{
 
 .cell{
     text-align: center;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     background-color: bisque;
     position: relative;
+    border: 2px solid black;
     
 }
 
@@ -83,6 +84,7 @@ main{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 2px solid black;
 }
 .content > img{
     display: block;
@@ -107,23 +109,32 @@ main{
     position:absolute;
     top: 0;
     left: 0;
-    background-color: grey;
+    background-color: rgb(187, 187, 187);
     width: 100%;
-    border: 2px solid lightgray;
+    border: 2px solid rgb(227, 227, 227);
     height: 50%;
     transition: height 0.3s ;
+
+    border-bottom: 0;
 }
 
 .overlay-bottom{
     position:absolute;
     bottom: 0;
     right: 0;
-    background-color: grey;
+    background-color: rgb(187, 187, 187);
     width: 100%;
     height: 50%;
     transform: rotate(180deg);
-    border: 2px solid lightgray;
+    border: 2px solid rgb(227, 227, 227);
     transition: height 0.3s ;
+    border-bottom: 0;
+}
+
+.taper{
+    height: 2px;
+    width: 100%;
+    background:repeating-linear-gradient( 45deg black 2px,2px yellow);
 }
 
 .overlay-top.my-collapse, .overlay-bottom.my-collapse{
